@@ -1,0 +1,30 @@
+text.usetex: False
+font.family: sans-serif
+font.sans-serif: Myriad Pro, Myriad, Nimbus Sans, DejaVu Sans, Arial, Helvetica, Verdana
+
+text.latex.preamble: "\usepackage{siunitx} \usepackage{braket} \usepackage{amsmath}"
+
+figure.figsize: 3.54, 2.19
+
+axes.labelsize: 8
+font.size: 8
+axes.titlesize: 8
+
+legend.fontsize: 8
+xtick.labelsize: 8
+ytick.labelsize: 8
+image.cmap : viridis
+
+savefig.dpi        : 1200
+
+# Use these in the default color cycle
+# hist_diff, hist_sum, ell, inset
+# https://coolors.co/ffd000-467bec-d32400-ff8100-057d9f-19127d
+# https://paletton.com/#uid=63o0F0kw0w0jyC+oRxVy4oIDfjr
+axes.prop_cycle: cycler("color", ["#057D9F", "#FF8100", "#19127D", "#000000", "#D32400", "#467bec", "#FFC107"])
+
+### pgf parameter
+## See https://matplotlib.org/stable/tutorials/text/pgf.html for more information.
+pgf.rcfonts: False  # don't setup fonts from rc parameters
+pgf.preamble: "\usepackage{siunitx} \usepackage{braket}"
+pgf.texsystem: "lualatex"
