@@ -114,7 +114,7 @@ if __name__ == "__main__":
     ######################
 
     if save_data:
-        np.savez_compressed('exp_eval/exp_coarse_S_all_PEAC_results.npz',
+        np.savez_compressed('exp_eval/exp_coarse_fits_res_S_all_PEAC.npz',
                             n_Ts                = np.array(n_Ts),
                             Ts                  = Ts,
                             n_stoch_rep         = np.array(n_stoch_rep),

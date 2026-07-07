@@ -45,6 +45,8 @@ def fit_ellipse_for_parallel(params):
 
     info_params = f"i = {i}, j = {j}, seed_offset = {seed_offset}, folder = {folder}"
 
+    # note that hf.fit_ellipse() performs algebraic ellipse fits, which are ultra fast
+    # for pure geometric ellipse fits refer to exp_fine_fits_S_sum_geo_ell.py
     return hf.fit_ellipse(S_plus, S_minus, add_info="ell: "+info_params)
 
 
@@ -312,7 +314,7 @@ if __name__ == "__main__":
     ######################
 
     if save_data:
-        np.savez_compressed('exp_eval/exp_fine_S_alpha_PEAC_and_ellipse_results.npz',
+        np.savez_compressed('exp_eval/exp_fine_fits_res_S_sum_PEAC.npz',
                             lambda_mean         = np.array(lambda_mean),
                             lambda_diff         = np.array(lambda_diff),
                             lambda_plus         = np.array(lambda_plus),

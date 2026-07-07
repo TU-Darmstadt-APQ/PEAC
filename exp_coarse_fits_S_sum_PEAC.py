@@ -45,6 +45,8 @@ def fit_ellipse_for_parallel(params):
 
     info_params = f"i = {i}, j = {j}, seed_offset = {seed_offset}, folder = {folder}"
 
+    # note that hf.fit_ellipse() performs algebraic ellipse fits, which are ultra fast
+    # for pure geometric ellipse fits refer to exp_coarse_fits_S_sum_geo_ell.py
     return hf.fit_ellipse(S_plus, S_minus, add_info="ell: "+info_params)
 
 
@@ -70,7 +72,7 @@ def fit_histogram_for_parallel(params):
 
     bins_minus, hist_vals_minus, fit_minus, peak_pos_minus, peak_frac_pos_minus, initial_guess_minus, ssr_minus = hf.fit_routine_hist(
         S_minus, add_info="minus: "+info_params)
-
+    
     sigma_guess = hf.sigma_density(np.nanmean(
         [fit_plus[1], fit_minus[1]]), lambda_plus, lambda_minus)
     if np.isnan(sigma_guess):
@@ -127,7 +129,7 @@ if __name__ == "__main__":
 
     save_data = True
 
-    max_kernels = 110
+    max_kernels = 120
     #########################################
     ########### end of parameters ###########
     #########################################
@@ -313,7 +315,7 @@ if __name__ == "__main__":
     ######################
 
     if save_data:
-        np.savez_compressed('exp_eval/exp_coarse_S_alpha_PEAC_and_ellipse_results.npz',
+        np.savez_compressed('exp_eval/exp_coarse_fits_res_S_sum_PEAC.npz',
                             lambda_mean         = np.array(lambda_mean),
                             lambda_diff         = np.array(lambda_diff),
                             lambda_plus         = np.array(lambda_plus),

@@ -11,7 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit as c 
 
-from helper_functions import Amp_all
+
+from helper_functions import Amp_sum
 
 plt.style.use('paper_mpl_style.mplstyle')
 
@@ -34,33 +35,30 @@ times_fine = np.linspace(0.95, 3.05, 201)
 # Data Import
 # =============================================================================
 # Histogram results
-histogram_results_all = np.load('exp_eval/exp_coarse_S_all_PEAC_results.npz')['results_histogram']
-histogram_results_mf = np.load('exp_eval/exp_coarse_S_mF_PEAC_results.npz')['results_histogram']
+histogram_results_sum = np.load('exp_eval/exp_coarse_fits_res_S_sum_PEAC.npz')['results_histogram']
 
 # =============================================================================
-# Fit routine for amplituden A_all
+# Fit routine for amplitude A_sum
 # =============================================================================
 
-fit_params = [] #A0, a, p0, dp
+fit_params = [] #A0, a
 
-for i in range(histogram_results_all.shape[1]):
-    params,_ = c(Amp_all, 
+for i in range(histogram_results_sum.shape[1]):
+    params,_ = c(Amp_sum, 
                  times*1e-3, 
-                 histogram_results_all[:,i,0],
-                 p0=(np.mean((histogram_results_mf[:, :, 0], histogram_results_mf[:, :, 3], histogram_results_mf[:, :, 6])), 
+                 histogram_results_sum[:,i,6], 
+                 p0=(np.mean((histogram_results_sum[:, :, 0], histogram_results_sum[:, :, 3])), 
                      31.1e-3, 
-                     0.391, 
-                     0.193, 
                      ))
     fit_params.append(params)
     
-plt.plot(times,histogram_results_all.mean(axis=1)[:,0])
-plt.plot(times_fine,Amp_all(times_fine*1e-3,*np.mean(fit_params,axis=0)))
+plt.plot(times,histogram_results_sum.mean(axis=1)[:,6])
+plt.plot(times_fine,Amp_sum(times_fine*1e-3,*np.mean(fit_params,axis=0)))
 
 plt.show()
 
-print("A0, a, p0, dp")
+print("A0, a")
 print("mean:", np.mean(fit_params,axis=0))
 print("std: ", np.std(fit_params,axis=0,ddof=1))
 
-# np.save('exp_eval/amplitude_all_results.npy', fit_params)
+# np.save('exp_eval/exp_coarse_fits_res_A_sum_PEAC.npy', fit_params)

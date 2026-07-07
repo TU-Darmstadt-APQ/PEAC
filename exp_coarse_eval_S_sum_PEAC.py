@@ -16,7 +16,7 @@ colour_ell = 'C2'
 
 timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M")
 
-to_import = "exp_coarse_S_alpha_PEAC_and_ellipse_results"
+to_import = "exp_coarse_fits_res_S_sum_PEAC"
 
 data_full = np.load(f'exp_eval/{to_import}.npz')
 
@@ -42,7 +42,7 @@ T_max = Ts[-1]
 
 phase_unwrapping = True
 save_data = False
-name_for_saving = "exp_coarse_eval_results"
+name_for_saving = "exp_coarse_eval_res_S_sum_PEAC"
 #########################################
 ########### end of parameters ###########
 #########################################

@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+"""
+@author: D.Pfeiffer, D.Derr & L.Lind
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -232,14 +236,6 @@ if __name__ == "__main__":
     plt.rc('font', size=10)
 
     ### phase unwrapping ###
-    # Arccos is implemented in numpy in such a way that only values between 0 and Pi are returned:
-    # in our case, 0 to Pi/2. Because cos is an even function, every value returned by arccos also
-    # has a negative counterpart. And given the Pi/2 periodicity in our case, any integer multiples
-    # of Pi/2 can be added.
-    # For a value x of arccos, +-x + l*Pi/2 with l an integer is therefore also a possible solution.
-    # By matching and considering the unmodified values of arrcos, its branches can be reconstructed
-    # with correct phase unwrapping.
-
     ## create mask for branches ##
     mask_branch1 = thetas <= np.pi
     mask_branch2 = (np.pi < thetas) & (thetas <= 2*np.pi)

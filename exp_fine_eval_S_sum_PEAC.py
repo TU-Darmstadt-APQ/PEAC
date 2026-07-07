@@ -15,7 +15,7 @@ colour_ell = 'C2'
 
 timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H%M")
 
-to_import = "exp_fine_S_alpha_PEAC_and_ellipse_results"
+to_import = "exp_fine_fits_res_S_sum_PEAC"
 
 data_full = np.load(f'exp_eval/{to_import}.npz')
 
@@ -30,7 +30,7 @@ results_ellipse     = data_full['results_ellipse']
 results_histogram   = data_full['results_histogram']
 
 # load calibration from MZI full new
-calib = np.load('exp_eval/exp_coarse_eval_results.npz')
+calib = np.load('exp_eval/exp_coarse_eval_res_S_sum_PEAC.npz')
 a_calib = calib['a_calib']
 
 
@@ -44,8 +44,8 @@ T_min = Ts[0]
 T_max = Ts[-1]
 
 phase_unwrapping = True
-save_data = True
-name_for_saving = "exp_fine_eval_results"
+save_data = False
+name_for_saving = "exp_fine_eval_res_S_sum_PEAC"
 #########################################
 ########### end of parameters ###########
 #########################################

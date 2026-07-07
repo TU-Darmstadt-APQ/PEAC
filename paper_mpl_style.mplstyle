@@ -13,7 +13,7 @@ axes.titlesize: 8
 legend.fontsize: 8
 xtick.labelsize: 8
 ytick.labelsize: 8
-image.cmap : viridis
+image.cmap : inferno_r
 
 savefig.dpi        : 1200
 
