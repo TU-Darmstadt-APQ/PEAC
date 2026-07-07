@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Okc 09 15:35:14 2025
-
-@author: Dominik Pfeiffer
+@author: D.Pfeiffer, D.Derr & L.Lind
 """
 # =============================================================================
 # Imports
@@ -29,7 +27,7 @@ from helper_functions import Amp_all
 
 plt.style.use('../paper_mpl_style.mplstyle')
 
-save_fig = False
+save_fig = True
 
 """
 Data import, processing, and visualization for interferometer analysis.
@@ -50,7 +48,7 @@ phase = np.linspace(0, 1, 21, endpoint=True) * 2 * np.pi
 # colours
 colour_hist_plus = 'C4'
 colour_hist_minus = 'C5'
-colour_hist_zero = 'C6'
+colour_hist_zero = 'indigo'
 
 # =============================================================================
 # Data Import
@@ -68,7 +66,8 @@ combined_data = np.load('../exp_data/Coarse/Experimental_schematics/250117_17260
 
 
 # Histogram results
-amplitude_results = np.load('../exp_eval/amplitude_all_results.npy')
+amplitude_results = np.load('../exp_eval/exp_coarse_fits_res_A_all_PEAC.npy')
+baseline_results = np.load('../exp_eval/exp_coarse_fits_res_S_all_PEAC.npz')['results_histogram'][:,:,2].mean()
 # =============================================================================
 # Data Masking
 # =============================================================================
@@ -139,7 +138,7 @@ ax_1.add_patch(p1)
 ax_1.add_patch(p2)
 
 ax_1.text(5.6, 0.12, r'$T$', ha='center')
-ax_1.text(9.6, 0.12, r'$T$', ha='center')
+ax_1.text(9.6, 0.12, r'$T+\delta T$', ha='center')
 ax_1.text(11.5, 0.03, r'$\phi_\mathrm{las}$', ha='center',rotation=90)
 
 # Styling and line parameters
@@ -422,19 +421,19 @@ for i, t in enumerate(times):
 
 ax_3.plot(times_fine,
         Amp_all(times_fine * 1e-3,
-                     *amplitude_results.mean(axis=0)),
-         color='k', lw=0.75)
+                     *amplitude_results.mean(axis=0)) + baseline_results,
+         color='w', lw=0.75)
 
 ax_3.plot(times_fine,
            -Amp_all(times_fine * 1e-3,
-                        *amplitude_results.mean(axis=0)),
-         color='k', lw=0.75)
+                        *amplitude_results.mean(axis=0)) + baseline_results,
+         color='w', lw=0.75)
 
 # =============================================================================
 # Add Vertical Markers for Example Time Points
 # =============================================================================
 # Mark specific experimental time index with a vertical dashed line for emphasis
-ax_3.vlines(times[plot_index], -1, 1, ls='--', lw=0.75, color='w')
+ax_3.vlines(times[plot_index], -1, 1, ls='--', lw=0.75, color='k')
 
 # =============================================================================
 # Axis Labels and Formatting
