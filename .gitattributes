@@ -3,3 +3,7 @@ num_data/theta_scan.npz filter=lfs diff=lfs merge=lfs -text
 num_fits_res_alpha_S_alpha_fine_PEAC.npz filter=lfs diff=lfs merge=lfs -text
 num_fits_res_alpha_S_alpha_PEAC.npz filter=lfs diff=lfs merge=lfs -text
 num_fits_res_alpha_S_alpha_slice_PEAC.npz filter=lfs diff=lfs merge=lfs -text
+num_fits_res_sigma_S_sum_PEAC_and_geo_ell.npz filter=lfs diff=lfs merge=lfs -text
+num_fits_res_theta_S_sum_geo_ell.npz filter=lfs diff=lfs merge=lfs -text
+num_fits_res_theta_S_sum_MLE.npz filter=lfs diff=lfs merge=lfs -text
+num_fits_res_theta_S_sum_PEAC.npz filter=lfs diff=lfs merge=lfs -text
